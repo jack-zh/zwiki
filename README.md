@@ -3,7 +3,7 @@
 
 ## version
 
-  0.2.2
+  0.3.0
 
 + [中文](https://github.com/jack-zh/zwiki/blob/master/README_zh.md)
 
