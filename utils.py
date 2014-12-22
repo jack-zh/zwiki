@@ -8,11 +8,6 @@ from hashlib import md5
 import uuid
 
 
-def get_default_authentication_method():
-	from app import app
-    return app.config.get('DEFAULT_AUTHENTICATION_METHOD', 'cleartext')
-
-
 def make_salted_hash(password, salt=None):
     if not salt:
         salt = os.urandom(64)

@@ -27,6 +27,10 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
+def get_default_authentication_method():
+    return app.config.get('DEFAULT_AUTHENTICATION_METHOD', 'cleartext')
+
+
 def protect(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
