@@ -245,6 +245,7 @@ class UserManager(object):
         if users.get(name):
             return False
         if authentication_method is None:
+            from utils import get_default_authentication_method
             authentication_method = get_default_authentication_method()
         new_user = {
             'active': active,
@@ -315,6 +316,7 @@ class User(object):
 
         authentication_method = self.data.get('authentication_method', None)
         if authentication_method is None:
+            from utils import get_default_authentication_method
             authentication_method = get_default_authentication_method()
         if authentication_method == 'hash':
             result = check_hashed_password(password, self.get('hash'))
