@@ -11,5 +11,6 @@ A simple wiki written in Flask.
 
     MIT
 
- ## Example online
- [http://zwiki.link-pub.cn](http://zwiki.link-pub.cn)
+## Example online
+
+[http://zwiki.link-pub.cn](http://zwiki.link-pub.cn)
