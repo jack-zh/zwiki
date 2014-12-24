@@ -1,10 +1,6 @@
-tags: 
-title: 江湖
+tags: home
+title: home 
 
-临时保存场所，有的时候Evernote和其他的note工具还都不是很方便， 比如说没有安装，就会把一些需要记录的东西放到这里。
-
-当然， 你可以说这个是一个垃圾场。
-
-其实， 我把它看做百宝箱。
+this is a example for [zwiki](http://github.com/jack-zh/zwiki)
 
 Good luck jack.zh.
