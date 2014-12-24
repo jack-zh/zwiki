@@ -1,0 +1,9 @@
+{
+  "jack": {
+    "active": true, 
+    "authentication_method": "cleartext", 
+    "password": "123456", 
+    "authenticated": false, 
+    "roles": "admin"
+  }
+}
