@@ -5,4 +5,5 @@ TITLE='zWiki'
 
 CONTENT_DIR="markdown"
 USER_CONFIG_DIR="content"
-PRIVATE=False
+PRIVATE=True
+SHOWPRIVATE=False

@@ -355,6 +355,15 @@ def protect(f):
     return wrapper
 
 
+def showprotect(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if app.config.get('SHOWPRIVATE') and not current_user.is_authenticated():
+            return loginmanager.unauthorized()
+        return f(*args, **kwargs)
+    return wrapper
+
+
 class URLForm(Form):
     url = TextField('', [InputRequired()])
 
@@ -421,7 +430,7 @@ def load_user(name):
 
 
 @app.route('/')
-@protect
+@showprotect
 def home():
     page = wiki.get('home')
     if page:
@@ -430,14 +439,14 @@ def home():
 
 
 @app.route('/index/')
-@protect
+@showprotect
 def index():
     pages = wiki.index()
     return render_template('index.html', pages=pages)
 
 
 @app.route('/<path:url>/')
-@protect
+@showprotect
 def display(url):
     page = wiki.get_or_404(url)
     return render_template('page.html', page=page)
@@ -468,7 +477,7 @@ def edit(url):
 
 
 @app.route('/preview/', methods=['POST'])
-@protect
+@showprotect
 def preview():
     a = request.form
     data = {}
@@ -499,21 +508,21 @@ def delete(url):
 
 
 @app.route('/tags/')
-@protect
+@showprotect
 def tags():
     tags = wiki.get_tags()
     return render_template('tags.html', tags=tags)
 
 
 @app.route('/tag/<string:name>/')
-@protect
+@showprotect
 def tag(name):
     tagged = wiki.index_by_tag(name)
     return render_template('tag.html', pages=tagged, tag=name)
 
 
 @app.route('/search/', methods=['GET', 'POST'])
-@protect
+@showprotect
 def search():
     form = SearchForm()
     if form.validate_on_submit():
@@ -545,21 +554,25 @@ def user_logout():
 
 
 @app.route('/user/')
+@protect
 def user_index():
     pass
 
 
 @app.route('/user/create/')
+@protect
 def user_create():
     pass
 
 
 @app.route('/user/<int:user_id>/')
+@protect
 def user_admin(user_id):
     pass
 
 
 @app.route('/user/delete/<int:user_id>/')
+@protect
 def user_delete(user_id):
     pass
 
