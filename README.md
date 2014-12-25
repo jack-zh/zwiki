@@ -1,7 +1,7 @@
 # zwiki
 =====
 
-A simple wiki written in Flask.
+A simple wiki(blog?) written in Flask.
 
 ## Start
 
