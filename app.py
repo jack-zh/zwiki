@@ -11,12 +11,16 @@ import json
 from functools import wraps
 from flask import (Flask, render_template, flash, redirect, url_for, request,
                    abort)
-from flask.ext.wtf import Form
-from wtforms import (TextField, TextAreaField, PasswordField)
-from wtforms.validators import (InputRequired, ValidationError)
+
 from flask.ext.login import (LoginManager, login_required, current_user,
                              login_user, logout_user)
 from flask.ext.script import Manager
+
+
+
+from handlerAction import Wiki, UserManager
+from formAction import URLForm, SearchForm, EditorForm, LoginForm
+
 
 import sys
 reload(sys)
@@ -158,7 +162,9 @@ def display(url):
 @protect
 def create():
     form = URLForm()
+    print form
     if form.validate_on_submit():
+        print "111"
         return redirect(url_for('edit', url=form.clean_url(form.url.data)))
     return render_template('create.html', form=form)
 
@@ -166,8 +172,10 @@ def create():
 @app.route('/edit/<path:url>/', methods=['GET', 'POST'])
 @protect
 def edit(url):
+    print "222"
     page = wiki.get(url)
     form = EditorForm(obj=page)
+    print "333"
     if form.validate_on_submit():
         if not page:
             page = wiki.get_bare(url)
