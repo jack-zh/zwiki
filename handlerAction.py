@@ -1,25 +1,10 @@
 # -*- coding: utf-8 -*-
-import binascii
-import hashlib
 import os
-import shutil
 import re
-from hashlib import md5
-import uuid
 import markdown
 import json
-from functools import wraps
-from flask import (Flask, render_template, flash, redirect, url_for, request,
-                   abort)
+from flask import (url_for ,abort)
 
-from flask.ext.login import (LoginManager, login_required, current_user,
-                             login_user, logout_user)
-from flask.ext.script import Manager
-
-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 class Processors(object):
     def __init__(self, content=""):

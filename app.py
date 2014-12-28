@@ -16,11 +16,8 @@ from flask.ext.login import (LoginManager, login_required, current_user,
                              login_user, logout_user)
 from flask.ext.script import Manager
 
-
-
 from handlerAction import Wiki, UserManager
 from formAction import URLForm, SearchForm, EditorForm, LoginForm
-
 
 import sys
 reload(sys)
