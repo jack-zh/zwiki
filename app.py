@@ -401,15 +401,22 @@ class LoginForm(Form):
 
 
 app = Flask(__name__)
+
+if os.path.exists("content/user_config.py"):
+    config_filename = "user_config.py"
+elif os.path.exists("content/config.py"):
+    config_filename = "config.py"
+else:
+    print ("Startup Failure: You need to place a "
+           "config.py or user_config.py in your content directory.")
+    exit(1)
+
 app.config['CONTENT_DIR'] = 'content'
 app.config['TITLE'] = 'wiki'
-try:
-    app.config.from_pyfile(
-        os.path.join(app.config.get('CONTENT_DIR'), 'config.py')
-    )
-except IOError:
-    print ("Startup Failure: You need to place a "
-           "config.py in your content directory.")
+
+app.config.from_pyfile(
+    os.path.join(app.config.get('CONTENT_DIR'), config_filename)
+)
 
 manager = Manager(app)
 
