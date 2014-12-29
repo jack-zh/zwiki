@@ -89,7 +89,6 @@ class Page(object):
         item = self._meta[name]
         if len(item) == 1:
             return item[0]
-        print item
         return item
 
     def __setitem__(self, name, value):
@@ -158,7 +157,6 @@ class Wiki(object):
         path = self.path(url)
         if not self.exists(url):
             return False
-        print path
         os.remove(path)
         return True
 
@@ -183,7 +181,7 @@ class Wiki(object):
             pages = []
         _walk(self.root)
         if not attr:
-            return sorted(pages, key=lambda x: x.title.lower())
+            return sorted(pages, key=lambda x: x.url.lower())
         return pages
 
     def get_by_title(self, title):

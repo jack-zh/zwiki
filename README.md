@@ -1,10 +1,14 @@
 # zwiki
 =====
 
-A simple wiki written in Flask.
+A simple wiki(blog?) written in Flask.
 
 ## Start
-	
+
+    git clone https://github.com/jack-zh/zwiki.git
+    cd zwiki
+    # edit content config.py and users.json
+    pip install -r requirements.txt
     gunicorn app:app
 
 ## LICENSE
