@@ -174,7 +174,8 @@ class Wiki(object):
                     if attr:
                         pages[getattr(page, attr)] = page
                     else:
-                        pages.append(Page(fullname, url.replace('\\', '/')))
+                        if name != "home.md":
+                            pages.append(Page(fullname, url.replace('\\', '/')))
         if attr:
             pages = {}
         else:
@@ -226,7 +227,10 @@ class Wiki(object):
 class UserManager(object):
     """A very simple user Manager, that saves it's data as json."""
     def __init__(self, path):
-        self.file = os.path.join(path, 'users.json')
+        if os.path.exists("content/user_users.json"):
+            self.file = os.path.join(path, 'user_users.json')
+        else:
+            self.file = os.path.join(path, 'users.json')
 
     def read(self):
         if not os.path.exists(self.file):
