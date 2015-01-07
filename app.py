@@ -182,7 +182,7 @@ class Wiki(object):
             pages = []
         _walk(self.root)
         if not attr:
-            return sorted(pages, key=lambda x: x.url.lower())
+            return sorted(pages, key=lambda x: x.url.lower(), reverse=True)
         return pages
 
     def get_by_title(self, title):
