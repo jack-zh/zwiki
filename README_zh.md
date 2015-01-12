@@ -62,7 +62,7 @@
     PRIVATE=False               # logout edit del ... flag
     SHOWPRIVATE=False           # logout show flag
 
-+ `SECRET_KEY` 一个session key字符串,见识生成自己的key
++ `SECRET_KEY` 一个session key字符串,建议你在部署你的`wiki`时生成自己的key
 + `TITLE='zWiki'` 标题，更改成你要现实的文字， 比如`Jack'Blog`
 + `CONTENT_DIR="markdown"` 我们添加的`md`文件的保存路径，此配置的意思是路径在此目录下的"markdown"文件夹内
 + `USER_CONFIG_DIR="content"` 配置文件加载路径 建议不加更改
