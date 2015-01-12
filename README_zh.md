@@ -1,7 +1,7 @@
 # zwiki
 =====
 
-[中文](https://github.com/jack-zh/zwiki/blob/master/README_zh.md)
++ [中文](https://github.com/jack-zh/zwiki/blob/master/README_zh.md)
 
 A simple wiki(blog?) written in Flask.
 
