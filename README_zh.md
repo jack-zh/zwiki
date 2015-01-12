@@ -35,7 +35,7 @@
  
 ## 设置
 
-### 启动设定端口和IP:
+#### 启动设定端口和IP:
 	
 	gunicorn -b ip:port app:app
 
@@ -48,7 +48,7 @@
 	nohup gunicorn -b 42.96.155.222:7777 app:app &
 
 
-### config.pyp配置说明：
+#### config.pyp配置说明：
 
 `content/config.py`是一个全局配置文件，程序启动的时候优先寻找`content/user_config.py`文件，当查找不到得时候会加载`config.py`。即我们可以配置自己的`user_config.py`,也可以在`confif.py`的基础上更改。
 
@@ -69,7 +69,7 @@
 + `PRIVATE=False` 当更改我们的wiki时是否需要验证
 + `SHOWPRIVATE=False` 当查看我们的wiki时，是否需要验证
 
-### users.py配置说明：
+#### users.py配置说明：
 
 `content/users.py`是一个全局配置文件，程序启动的时候优先寻找`content/user_users.py`文件，当查找不到得时候会加载`users.py`。即我们可以配置自己的`user_users.py`,也可以在`users.py`的基础上更改。这个配置文件是用来配置登录信息的。可以支持多用户。
 
