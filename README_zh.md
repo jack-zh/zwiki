@@ -9,7 +9,7 @@
 
 ## 开始
 
-#### 1. 或取代码
+#### 1. 获取代码
 
     git clone https://github.com/jack-zh/zwiki.git
 
@@ -35,11 +35,23 @@
  
 ## 设置
 
-### config.py说明：
+### 启动设定端口和IP:
+	
+	gunicorn -b ip:port app:app
+
+比如：
+
+	gunicorn -b 8.8.8.8:6789 app:app
+
+当然，你可以后台运行它
+
+	nohup gunicorn -b 42.96.155.222:7777 app:app &
+
+
+### config.pyp配置说明：
 
 `content/config.py`是一个全局配置文件，程序启动的时候优先寻找`content/user_config.py`文件，当查找不到得时候会加载`config.py`。即我们可以配置自己的`user_config.py`,也可以在`confif.py`的基础上更改。
 
-#### 1. content/config.py说明
     # encoding: utf-8
 
     SECRET_KEY='JACK_ZH'        # session key
@@ -57,7 +69,7 @@
 + `PRIVATE=False` 当更改我们的wiki时是否需要验证
 + `SHOWPRIVATE=False` 当查看我们的wiki时，是否需要验证
 
-### users.py说明：
+### users.py配置说明：
 
 `content/users.py`是一个全局配置文件，程序启动的时候优先寻找`content/user_users.py`文件，当查找不到得时候会加载`users.py`。即我们可以配置自己的`user_users.py`,也可以在`users.py`的基础上更改。这个配置文件是用来配置登录信息的。可以支持多用户。
 
