@@ -45,7 +45,7 @@
 
 当然，你可以后台运行它
 
-	nohup gunicorn -b 42.96.155.222:7777 app:app &
+	nohup gunicorn -b 8.8.8.8:6789 app:app &
 
 
 #### config.pyp配置说明：
