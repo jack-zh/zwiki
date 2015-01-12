@@ -225,7 +225,6 @@ class Wiki(object):
 
 
 class UserManager(object):
-    """A very simple user Manager, that saves it's data as json."""
     def __init__(self, path):
         if os.path.exists("content/user_users.json"):
             self.file = os.path.join(path, 'user_users.json')
