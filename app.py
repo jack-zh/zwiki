@@ -182,7 +182,7 @@ class Wiki(object):
             pages = []
         _walk(self.root)
         if not attr:
-            return sorted(pages, key=lambda x: x.url.lower(), reverse=True)
+            return self._return_indexs_by_sorted(pages)
         return pages
 
     def get_by_title(self, title):
@@ -210,7 +210,7 @@ class Wiki(object):
         for page in pages:
             if tag in page.tags:
                 tagged.append(page)
-        return sorted(tagged, key=lambda x: x.title.lower())
+        return self._return_indexs_by_sorted(tagged)
 
     def search(self, term, attrs=['title', 'tags', 'body']):
         pages = self.index()
@@ -221,7 +221,10 @@ class Wiki(object):
                 if regex.search(getattr(page, attr)):
                     matched.append(page)
                     break
-        return matched
+        return self._return_indexs_by_sorted(matched)
+
+    def _return_indexs_by_sorted(self, indexs):
+        return sorted(indexs, key=lambda x: x.url.lower(), reverse=True)
 
 
 class UserManager(object):
