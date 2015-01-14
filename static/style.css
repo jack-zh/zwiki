@@ -1,7 +1,12 @@
-table{
-	border:1px blue solid
+
+table {
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
 }
 
-td{
-	border:1px solid #cccccc;
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
 }
