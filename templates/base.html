@@ -28,17 +28,10 @@
 							</ul>
 
 							<ul class="nav pull-right">
-								<li><a href="/2015-00-00-0/">Buy List</a></li>
 								{% if current_user.is_anonymous() %}
 									<li><a href="{{ url_for('user_login') }}">Login</a></li>
 								{% else %}
 									<li><a href="{{ url_for('user_logout') }}">Logout</a></li>
-
-
-    def _return_indexs_by_sorted(self, indexs):
-        return sorted(indexs, key=lambda x: x.url.lower(), reverse=True)
-    def _return_indexs_by_sorted(self, indexs):
-        return sorted(indexs, key=lambda x: x.url.lower(), reverse=True)
 								{% endif %}
 							</ul>
 						</div>

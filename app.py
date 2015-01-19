@@ -174,7 +174,7 @@ class Wiki(object):
                     if attr:
                         pages[getattr(page, attr)] = page
                     else:
-                        if name != "home.md" or name != "2015-00-00-0.md":
+                        if name != "home.md":
                             pages.append(Page(fullname, url.replace('\\', '/')))
         if attr:
             pages = {}
