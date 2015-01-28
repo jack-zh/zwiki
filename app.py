@@ -563,6 +563,17 @@ def user_logout():
     flash('Logout successful.', 'success')
     return redirect(url_for('index'))
 
+@app.route('/upload/', methods=['GET'])
+@showprotect
+def show_upload():
+    return "HELLO"
+
+@app.route('/upload/', methods=['POST'])
+@protect
+def post_upload():
+    l = {"filename":"file.png", "url":"ll/ff/gg/tt/sdewrver.png"}
+    return json.dumps(l)
+
 
 @app.route('/user/')
 @protect
