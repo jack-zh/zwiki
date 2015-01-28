@@ -434,6 +434,8 @@ wiki = Wiki(app.config.get('CONTENT_DIR'))
 
 users = UserManager(app.config.get('USER_CONFIG_DIR'))
 
+if not os.path.exists(app.config.get('UPLOAD_DIR')):
+    os.makedirs(app.config.get('UPLOAD_DIR'))
 
 @loginmanager.user_loader
 def load_user(name):
@@ -568,11 +570,34 @@ def user_logout():
 def show_upload():
     return "HELLO"
 
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+from werkzeug import secure_filename
+import uuid
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+def save_name(filename):
+    return str(uuid.uuid1()) + "." + filename.rsplit('.', 1)[1]
+
 @app.route('/upload/', methods=['POST'])
 @protect
 def post_upload():
-    l = {"filename":"file.png", "url":"ll/ff/gg/tt/sdewrver.png"}
-    return json.dumps(l)
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        savename = save_name(filename)
+        print savename
+        filepath = os.path.join(app.config.get('UPLOAD_DIR'), savename)
+        file.save(filepath)
+        filepath = filepath[1:]
+
+        bobj = {"filename":filename, "url":filepath, "error": False}
+    else:
+        bobj =  {'error':True}
+    return json.dumps(bobj)
 
 
 @app.route('/user/')

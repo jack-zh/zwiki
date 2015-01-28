@@ -35,19 +35,13 @@ Wiki Editor
 <h3>Upload Resources</h3>
 <p>You can upload image for markdown</p>
 <form name="form" action="" method="POST" enctype="multipart/form-data"> 
-      <p><input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input" /></p>
+      <p><input id="file" type="file" size="45" name="file" class="input" /></p>
       <h6>Please select a file and click Upload button</h6> 
       <p><button class="button" id="buttonUpload" onclick="return ajaxFileUpload();">Upload</button></p>
   </form>
   </br>
 <h3>Upload list:</h3>
-<pre id="uploadlist">
-#include "stdio.h"
-int main(){
-  ptintf("Hello world");
-  return 0;
-}
-</pre>
+<pre id="uploadlist"></pre>
 
 {% endblock sidebar %}
 {% block postscripts -%}
@@ -68,7 +62,7 @@ $('#previewlink').on('click', function() {
       console.log(msg);
     },
     error: function() {
-			$pre.addClass('alert').addClass('alert-error');
+	$pre.addClass('alert').addClass('alert-error');
       $pre.html('There was a problem with the preview.');
     },
     complete: function() {
@@ -93,12 +87,20 @@ function ajaxFileUpload(){
             url:'/upload/',
             type:'post',
             secureuri:false,
-            fileElementId:'fileToUpload',
+            fileElementId:'file',
             dataType: 'json',
             success: function (data, status)
             {
-            console.log(data);
-            console.log(status)
+                var file = $("#file") 
+                file.after(file.clone().val(""));   
+                file.remove(); 
+                console.log(data);
+                console.log(status);
+                if(!data.error){
+                var list = $("#uploadlist");
+                var html = list.html() + data.filename + "' url:\n" + data.url + "\n=======================\n";
+                list.html(html)
+                }
             },
             error: function (data, status, e)
             {
