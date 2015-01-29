@@ -98,7 +98,7 @@ function ajaxFileUpload(){
                 console.log(status);
                 if(!data.error){
                 var list = $("#uploadlist");
-                var html = list.html() + data.filename + "' url:\n" + data.url + "\n=======================\n";
+                var html = list.html() + data.filename + "'s url:\n" + data.url + "\n=======================\n";
                 list.html(html)
                 }
             },

@@ -570,17 +570,27 @@ def user_logout():
 def show_upload():
     return "HELLO"
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-from werkzeug import secure_filename
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar'])
 import uuid
 
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def save_name(filename):
-    return str(uuid.uuid1()) + "." + filename.rsplit('.', 1)[1]
+def get_save_name(filename):
+    return (str(uuid.uuid1()) + "." + filename.rsplit('.', 1)[1]).lower()
+
+
+import re
+def secure_filename(s):
+    _s = s.rsplit('.', 1)[1]
+    s = ".".join(s.split(".")[:-1])
+    s = re.sub('[" "\/\--.]+', '-', s)
+    s = re.sub(r':-', ':', s)
+    s = re.sub(r'^-|-$', '', s)
+    return s + "." + _s
+
 
 @app.route('/upload/', methods=['POST'])
 @protect
@@ -588,8 +598,7 @@ def post_upload():
     file = request.files['file']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        savename = save_name(filename)
-        print savename
+        savename = get_save_name(filename)
         filepath = os.path.join(app.config.get('UPLOAD_DIR'), savename)
         file.save(filepath)
         filepath = filepath[1:]
