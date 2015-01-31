@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import binascii
 import hashlib
 import os
@@ -14,6 +15,9 @@ from flask.ext.login import (LoginManager, login_required, current_user,
                              login_user, logout_user)
 from flask.ext.script import Manager
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class Processors(object):
     def __init__(self, content=""):
