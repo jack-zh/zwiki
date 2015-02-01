@@ -3,6 +3,7 @@ import binascii
 import hashlib
 import os
 import re
+import uuid
 import markdown
 import json
 from functools import wraps
@@ -166,6 +167,9 @@ class Wiki(object):
 
     def index(self, attr=None):
         def _walk(directory, path_prefix=()):
+            if not os.path.isdir(directory):
+                os.makedirs(directory)
+                return
             for name in os.listdir(directory):
                 fullname = os.path.join(directory, name)
                 if os.path.isdir(fullname):
@@ -575,8 +579,6 @@ def show_upload():
     return "HELLO"
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar', 'tar', 'gz', 'xz', '7z', 'md'])
-import uuid
-
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -586,7 +588,6 @@ def get_save_name(filename):
     return (str(uuid.uuid1()) + "." + filename.rsplit('.', 1)[1]).lower()
 
 
-import re
 def secure_filename(s):
     _s = s.rsplit('.', 1)[1]
     s = ".".join(s.split(".")[:-1])
