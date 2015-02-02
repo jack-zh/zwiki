@@ -21,7 +21,7 @@ Wiki Editor
           <a class="btn" href="#preview" id="previewbtn">Preview</a>
         </div>
 				<div class="pull-right">
-          <a class="btn" href="{{ url_for('display', url=page.url.decode('utf-8') ) }}">Cancel</a>
+          <a class="btn" href="{{ url_for('display', url=page.url) }}">Cancel</a>
 					<button class="btn btn-success" type="submit">Save</button>
 				</div>
 			</div>

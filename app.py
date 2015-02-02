@@ -2,6 +2,7 @@
 import binascii
 import hashlib
 import os
+import shutil
 import re
 import uuid
 import markdown
@@ -172,7 +173,7 @@ class Wiki(object):
                 return
             for name in os.listdir(directory):
                 fullname = os.path.join(directory, name)
-                if os.path.isdir(fullname):
+                if os.path.isdir(fullname) and fullname != "upload":
                     _walk(fullname, path_prefix + (name,))
                 elif name.endswith('.md'):
                     if not path_prefix:
@@ -573,10 +574,6 @@ def user_logout():
     flash('Logout successful.', 'success')
     return redirect(url_for('index'))
 
-@app.route('/upload/', methods=['GET'])
-@showprotect
-def show_upload():
-    return "HELLO"
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar', 'tar', 'gz', 'xz', '7z', 'md'])
 
@@ -597,6 +594,19 @@ def secure_filename(s):
     return s + "." + _s
 
 
+def save_uploadfile_to_backup(filename):
+    backupfilepath = os.path.join(app.config.get('CONTENT_DIR'), "upload")
+    if not os.path.isdir(backupfilepath):
+        os.makedirs(backupfilepath)
+    shutil.copy(filename,  backupfilepath)
+
+
+@app.route('/upload/', methods=['GET'])
+@showprotect
+def show_upload():
+    return "HELLO"
+
+
 @app.route('/upload/', methods=['POST'])
 @protect
 def post_upload():
@@ -606,11 +616,14 @@ def post_upload():
         savename = get_save_name(filename)
         filepath = os.path.join(app.config.get('UPLOAD_DIR'), savename)
         file.save(filepath)
-        filepath = filepath[1:]
+        staticfilepath = filepath[1:].replace("\\", "/")
 
-        bobj = {"filename":filename, "url":filepath, "error": False}
+        bobj = {"filename":filename, "url":staticfilepath, "error": False}
     else:
         bobj =  {'error':True}
+
+    if not bobj['error']:
+        save_uploadfile_to_backup(filepath)
     return json.dumps(bobj)
 
 
