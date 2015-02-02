@@ -4,7 +4,7 @@
 {% block content %}
 <form method="POST" class="form-inline">
 	{{ form.hidden_tag() }}
-	{{ input(form.url, placeholder="URL of the new page") }}
+	{{ input(form.url, placeholder="new page. e.g:1970-01-01-1") }}
 	<input type="submit" class="btn btn-success" value="Create">
 </form>
 {% endblock content %}
