@@ -183,7 +183,7 @@ class Wiki(object):
                     if attr:
                         pages[getattr(page, attr)] = page
                     else:
-                        if name != "home.md":
+                        if name != "home.md" and name != "contents.md":
                             pages.append(Page(fullname, url.replace('\\', '/')))
         if attr:
             pages = {}
@@ -458,6 +458,14 @@ def home():
     if page:
         return display('home')
     return render_template('home.html')
+
+@app.route('/contents/')
+@showprotect
+def contents():
+    page = wiki.get('contents')
+    if page:
+        return display('contents')
+    return render_template('contents.html')
 
 
 @app.route('/index/')
