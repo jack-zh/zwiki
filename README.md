@@ -1,6 +1,10 @@
 # zwiki
 =====
 
+## version
+
+  0.2
+
 + [中文](https://github.com/jack-zh/zwiki/blob/master/README_zh.md)
 
 A simple wiki(blog?) written in Flask.
@@ -11,6 +15,10 @@ A simple wiki(blog?) written in Flask.
     cd zwiki
     pip install -r requirements.txt
     gunicorn app:app
+
+## Next version
+  + The attachment list
+  + The custom Menu
 
 ## LICENSE
 
