@@ -4,6 +4,7 @@ import hashlib
 import os
 import shutil
 import re
+from hashlib import md5
 import uuid
 import markdown
 import json
@@ -464,6 +465,14 @@ def secure_filename(s):
     s = re.sub(r':-', ':', s)
     s = re.sub(r'^-|-$', '', s)
     return s + "." + _s
+
+ 
+def get_md5(name):
+    m = md5()
+    a_file = open(name, 'rb')
+    m.update(a_file.read())
+    a_file.close()
+    return m.hexdigest()
 
 
 def save_uploadfile_to_backup(filename):
