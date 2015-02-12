@@ -446,6 +446,33 @@ users = UserManager(app.config.get('USER_CONFIG_DIR'))
 if not os.path.exists(app.config.get('UPLOAD_DIR')):
     os.makedirs(app.config.get('UPLOAD_DIR'))
 
+
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar', 'tar', 'gz', 'xz', '7z', 'md'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def get_save_name(filename):
+    return (str(uuid.uuid1()) + "." + filename.rsplit('.', 1)[1]).lower()
+
+
+def secure_filename(s):
+    _s = s.rsplit('.', 1)[1]
+    s = ".".join(s.split(".")[:-1])
+    s = re.sub('[" "\/\--.]+', '-', s)
+    s = re.sub(r':-', ':', s)
+    s = re.sub(r'^-|-$', '', s)
+    return s + "." + _s
+
+
+def save_uploadfile_to_backup(filename):
+    backupfilepath = os.path.join(app.config.get('CONTENT_DIR'), "upload")
+    if not os.path.isdir(backupfilepath):
+        os.makedirs(backupfilepath)
+    shutil.copy(filename,  backupfilepath)
+
+
 @loginmanager.user_loader
 def load_user(name):
     return users.get_user(name)
@@ -575,36 +602,18 @@ def user_logout():
     return redirect(url_for('index'))
 
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar', 'tar', 'gz', 'xz', '7z', 'md'])
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-def get_save_name(filename):
-    return (str(uuid.uuid1()) + "." + filename.rsplit('.', 1)[1]).lower()
-
-
-def secure_filename(s):
-    _s = s.rsplit('.', 1)[1]
-    s = ".".join(s.split(".")[:-1])
-    s = re.sub('[" "\/\--.]+', '-', s)
-    s = re.sub(r':-', ':', s)
-    s = re.sub(r'^-|-$', '', s)
-    return s + "." + _s
-
-
-def save_uploadfile_to_backup(filename):
-    backupfilepath = os.path.join(app.config.get('CONTENT_DIR'), "upload")
-    if not os.path.isdir(backupfilepath):
-        os.makedirs(backupfilepath)
-    shutil.copy(filename,  backupfilepath)
-
-
 @app.route('/upload/', methods=['GET'])
 @showprotect
 def show_upload():
-    return "HELLO"
+    tags = wiki.get_tags()
+    if os.path.exists("uploads.json"):
+        fd = open("uploads.json", "r")
+        _s = fd.read()
+        fd.close()
+        uploads = json.loads(_s)
+    else:
+        uploads = {}
+    return render_template('upload.html', uploads=uploads)
 
 
 @app.route('/upload/', methods=['POST'])
@@ -617,13 +626,28 @@ def post_upload():
         filepath = os.path.join(app.config.get('UPLOAD_DIR'), savename)
         file.save(filepath)
         staticfilepath = filepath[1:].replace("\\", "/")
-
         bobj = {"filename":filename, "url":staticfilepath, "error": False}
+
+        if os.path.exists("uploads.json"):
+            fd = open("uploads.json", "r")
+            _s = fd.read()
+            fd.close()
+            _os = json.loads(_s)
+        else:
+            _os = {}
+
+        _os[savename] = filename
+        _s = json.dumps(_os)
+        fd = open("uploads.json", "w")
+        fd.write(_s)
+        fd.close()
+
     else:
         bobj =  {'error':True}
 
     if not bobj['error']:
         save_uploadfile_to_backup(filepath)
+
     return json.dumps(bobj)
 
 

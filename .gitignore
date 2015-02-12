@@ -57,3 +57,5 @@ target/
 
 content/*
 static/upload
+uploads.json
+

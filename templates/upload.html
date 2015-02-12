@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Index by uploads{% endblock title %}
+
+{% block content %}
+{% if uploads %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Url</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for url in uploads %}
+				<tr>
+					<td><a href="/static/upload/{{ url }}"/>{{ uploads[url] }}</td>
+					<td>/static/upload/{{ url }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no uploads in use so far.</p>
+{% endif %}
+{% endblock content %}
