@@ -615,8 +615,8 @@ def user_logout():
 @showprotect
 def show_upload():
     tags = wiki.get_tags()
-    if os.path.exists("uploads.json"):
-        fd = open("uploads.json", "r")
+    if os.path.exists(os.path.join(app.config.get('CONTENT_DIR'), "uploads.json")):
+        fd = open(os.path.join(app.config.get('CONTENT_DIR'), "uploads.json"), "r")
         _s = fd.read()
         fd.close()
         uploads = json.loads(_s)
@@ -637,8 +637,8 @@ def post_upload():
         staticfilepath = filepath[1:].replace("\\", "/")
         bobj = {"filename":filename, "url":staticfilepath, "error": False}
 
-        if os.path.exists("uploads.json"):
-            fd = open("uploads.json", "r")
+        if os.path.exists(os.path.join(app.config.get('CONTENT_DIR'), "uploads.json")):
+            fd = open(os.path.join(app.config.get('CONTENT_DIR'), "uploads.json"), "r")
             _s = fd.read()
             fd.close()
             _os = json.loads(_s)
@@ -647,7 +647,7 @@ def post_upload():
 
         _os[savename] = filename
         _s = json.dumps(_os)
-        fd = open("uploads.json", "w")
+        fd = open(os.path.join(app.config.get('CONTENT_DIR'), "uploads.json"), "w")
         fd.write(_s)
         fd.close()
 
