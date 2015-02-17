@@ -98,16 +98,16 @@ function ajaxFileUpload(){
                 console.log(data);
                 console.log(status);
                 if(!data.error){
-                var list = $("#uploadlist");
-                var html = list.html() + data.filename + "'s url:\n" + data.url + "\n=======================\n";
-                list.html(html)
-                }
+                    var list = $("#uploadlist");
+                    var html = list.html() + data.filename + "'s url:\n" + data.url + "<hr style='border:1px dashed blue'/>";
+                    list.html(html)
+                }else{
+                    alert("upload error.")
+              }
             },
             error: function (data, status, e)
             {
-                console.log(data);
-                console.log(status);
-                console.log(e);
+                alert("upload error.")
             }
         })
         return false;
