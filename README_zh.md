@@ -52,15 +52,20 @@
 
 `content/config.py`是一个全局配置文件，程序启动的时候优先寻找`content/user_config.py`文件，当查找不到得时候会加载`config.py`。即我们可以配置自己的`user_config.py`,也可以在`confif.py`的基础上更改。
 
-    # encoding: utf-8
+	# encoding: utf-8
 
-    SECRET_KEY='JACK_ZH'        # session key
-    TITLE='zWiki'               # wiki title
+	SECRET_KEY='JACK_ZH'         # session key
+	TITLE='zWiki'                # wiki title
 
-    CONTENT_DIR="markdown"      # wiki(blog) save file dir
-    USER_CONFIG_DIR="content"   # ...
-    PRIVATE=False               # logout edit del ... flag
-    SHOWPRIVATE=False           # logout show flag
+	CONTENT_DIR="markdown"       # wiki(blog) save file dir
+	USER_CONFIG_DIR="content"    # ...
+	PRIVATE=False                # logout edit del ... flag
+	SHOWPRIVATE=False            # logout show flag
+	UPLOAD_DIR="./static/upload"
+
+	# from 畅言： http://changyan.sohu.com/install/code/pc
+	SOHUCS_APPID = "cyrE7gU83"
+	SOHUCS_CONF = "prod_1f3b1e3a86d5da44e0295ab22fb27033"
 
 + `SECRET_KEY` 一个session key字符串,建议你在部署你的`wiki`时生成自己的key
 + `TITLE='zWiki'` 标题，更改成你要现实的文字， 比如`Jack'Blog`
@@ -68,6 +73,8 @@
 + `USER_CONFIG_DIR="content"` 配置文件加载路径 建议不加更改
 + `PRIVATE=False` 当更改我们的wiki时是否需要验证
 + `SHOWPRIVATE=False` 当查看我们的wiki时，是否需要验证
++ `SOHUCS_APPID = "cyrE7gU83"` 畅言的注册后的appid
++ `SOHUCS_CONF = "prod_1f3b1e3a86d5da44e0295ab22fb27033"` 畅言注册后的conf
 
 #### users.py配置说明：
 
