@@ -112,3 +112,10 @@ td{
 th{
 	border:2px solid #cccccc;
 }
+
+.footer{
+  width:72%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #cccccc;
+}

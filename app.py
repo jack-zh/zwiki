@@ -429,6 +429,8 @@ else:
 
 app.config['CONTENT_DIR'] = 'content'
 app.config['TITLE'] = 'wiki'
+app.config['SOHUCS_APPID'] = 'wiki'
+app.config['SOHUCS_CONF'] = 'wiki'
 
 app.config.from_pyfile(
     os.path.join(app.config.get('CONTENT_DIR'), config_filename)
