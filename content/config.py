@@ -9,5 +9,6 @@ PRIVATE=False                # logout edit del ... flag
 SHOWPRIVATE=False            # logout show flag
 UPLOAD_DIR="./static/upload"
 
+# from 畅言： http://changyan.sohu.com/install/code/pc
 SOHUCS_APPID = "cyrE7gU83"
 SOHUCS_CONF = "prod_1f3b1e3a86d5da44e0295ab22fb27033"
