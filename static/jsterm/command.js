@@ -155,13 +155,13 @@ COMMANDS.import = function(argv, cb) {
       }else{
         this._terminal.write(
               'Traceback (most recent call last):<br>'+
-              ' File "<stdin>", line 1, in <module><br>'+
+              ' File "&#x3c;stdin&#x3e;", line 1, in &#x3c;module&#x3e;<br>'+
               'ImportError: No module named '+modulename
           );
       }
   }else{
     this._terminal.write(
-              'File "<stdin>", line 1<br>'+
+              'File "&#x3c;stdin&#x3e;", line 1<br>'+
               ' import<br>'+
               '       ^<br>'+
               'SyntaxError: invalid syntax'
@@ -173,34 +173,42 @@ COMMANDS.import = function(argv, cb) {
 
 
 COMMANDS.__username__action__ = function(argv, cb) {
-  var attr = this._terminal.parseArgs(argv).filenames[0];
-  if (attr=='weibo') {
-    this._terminal.write('weibo上主要关注了一些大牛的账户，没做什么有意义的微博。id:<br><a target="_blank" href="'+ CONFIG.weibo +'">'+ CONFIG.weibo +'</a>');
-  }else if(attr=='github'){
-    this._terminal.write('自己特别喜欢逛github和分享自己的项目,就跟老婆逛淘宝的感觉一样样的, 发现了好玩的项目就忍不住偷看人间的源码。id:<br><a href="'+ CONFIG.github +'" target="_blank">'+ CONFIG.github +'</a>');
-  }else if (attr=='blog') {
-    this._terminal.write('博客，主要记录一些平时忽视的小细节和坑，目前内容不多。url:<br><a href="'+ CONFIG.blog +'" target="_blank">'+ CONFIG.blog +'</a>');
-  }else if (attr=='realname') {
-    this._terminal.write('张志贺');
-  }else if (attr=='sendmail()') {
-    this._terminal.write('由于gmail的频繁抽风(F**k GFW)，换成了万恶的QQ邮箱');
-    window.location.href='mailto:'+ CONFIG.email;
-  }else if (attr=='sendmail') {
-    this._terminal.write('&#x3c;function loads at 0x107e73c80&#x3e;');
-  }else if (attr=='__doc__') {
-    this._terminal.write(
-      '微博账户\t\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.weibo<br>'+
-      'github\t\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.github<br>'+
-      '博客\t\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.blog<br>'+
-      '自己的真实名字\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.realname<br>'+
-      '给我发邮件\t<span class="pythonmethod">方法</span>'+ CONFIG.username +'.sendmail()<br>'
+  if (this._terminal.parseArgs(argv).filenames.length > 0){
+    var attr = this._terminal.parseArgs(argv).filenames[0];
+    if (attr=='weibo') {
+      this._terminal.write('weibo上主要关注了一些大牛的账户，没做什么有意义的微博。id:<br><a target="_blank" href="'+ CONFIG.weibo +'">'+ CONFIG.weibo +'</a>');
+    }else if(attr=='github'){
+      this._terminal.write('自己特别喜欢逛github和分享自己的项目,就跟老婆逛淘宝的感觉一样样的, 发现了好玩的项目就忍不住偷看人间的源码。id:<br><a href="'+ CONFIG.github +'" target="_blank">'+ CONFIG.github +'</a>');
+    }else if (attr=='blog') {
+      this._terminal.write('博客，主要记录一些平时忽视的小细节和坑，目前内容不多。url:<br><a href="'+ CONFIG.blog +'" target="_blank">'+ CONFIG.blog +'</a>');
+    }else if (attr=='realname') {
+      this._terminal.write('张志贺');
+    }else if (attr=='sendmail()') {
+      this._terminal.write('由于gmail的频繁抽风(F**k GFW)，换成了万恶的QQ邮箱');
+      window.location.href='mailto:'+ CONFIG.email;
+    }else if (attr=='sendmail') {
+      this._terminal.write('&#x3c;function loads at 0x107e73c80&#x3e;');
+    }else if (attr=='__doc__') {
+      this._terminal.write(
+        '微博账户\t\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.weibo<br>'+
+        'github\t\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.github<br>'+
+        '博客\t\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.blog<br>'+
+        '自己的真实名字\t<span class="pythonattr">属性</span>'+ CONFIG.username +'.realname<br>'+
+        '给我发邮件\t<span class="pythonmethod">方法</span>'+ CONFIG.username +'.sendmail()<br>'
+        );
+    }else{
+      this._terminal.write(
+          'Traceback (most recent call last):<br>'+
+              ' File "&#x3c;stdin&#x3e;", line 1, in &#x3c;module&#x3e;<br>'+
+              'ImportError: No module named '+ attr
       );
+    }
   }else{
     this._terminal.write(
-        "<module '"+ CONFIG.username +"' from '/Home/"+ CONFIG.username +"/__init__.pyc'>"
-      );
-  }  
-   cb();
+        "&#x3c;module '"+ CONFIG.username +"' from '/Home/"+ CONFIG.username +"/__init__.pyc'&#x3e;"
+    );
+  }
+  cb();
 }
 
 COMMANDS.login = function(argv, cb) {
@@ -284,7 +292,7 @@ COMMANDS.cd = function(argv, cb) {
       }else{
         this._terminal.write(
               'Traceback (most recent call last):<br>'+
-              ' File "<stdin>", line 1, in <module><br>'+
+              ' File "&#x3c;stdin&#x3e;", line 1, in &#x3c;module&#x3e;<br>'+
               'ImportError: No module named '+cdname
           );
       }
