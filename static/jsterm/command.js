@@ -197,9 +197,7 @@ COMMANDS.__username__action__ = function(argv, cb) {
       );
   }else{
     this._terminal.write(
-        'Traceback (most recent call last):<br>'+
-        ' File "&#x3c;stdin&#x3e;", line 1, in <module><br>'+
-        "AttributeError: 'module' object has no attribute '"+attr+"'"
+        "<module '"+ CONFIG.username +"' from '/Home/"+ CONFIG.username +"/__init__.pyc'>"
       );
   }  
    cb();
