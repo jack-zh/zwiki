@@ -1,0 +1,88 @@
+html {
+}
+
+body {
+   background: black;
+}
+
+.jsterm a {
+   color: #37a0d7;
+   text-decoration: none;
+}
+
+.jsterm a:hover {
+   text-decoration: underline;
+}
+
+div.jsterm {
+   background: black;
+   font-family: monospace;
+   font-size: 16px;
+   color: #E0E0E0;
+   width: 900px;
+   margin-bottom: 20px;
+   white-space: pre-wrap;
+}
+
+div.jsterm .prettytext{
+   color: #aa1345;
+   font-weight: bold;
+}
+
+div.jsterm .pythonattr{
+   color: #dfd661;
+   font-weight: bold;
+}
+
+div.jsterm .pythonmethod{
+   color: #98e122;
+   font-weight: bold;
+}
+
+.fa-map-marker {
+color: #31f0aa;
+}
+
+div.jsterm .py{
+   color: #ffffff;
+   font-weight: bold;
+}
+
+div.jsterm .host, div.jsterm .host a {
+   color: #5555ff;
+   font-weight: bold;
+}
+
+div.jsterm .user, div.jsterm .user a {
+   color: #58d1eb;
+   font-weight: bold;
+}
+
+div.jsterm .cwd, div.jsterm .cwd a {
+   color: #ffff55;
+   font-weight: bold;
+}
+
+div.jsterm .dir, div.jsterm .dir a {
+   color: #5555ff;
+   font-weight: bold;
+}
+
+div.jsterm .link, div.jsterm .link a {
+   color: #5555ff;
+   font-weight: bold;
+}
+
+div.jsterm .exec, div.jsterm .exec a {
+   color: #55ff55;
+   font-weight: bold;
+}
+
+div.jsterm .img, div.jsterm .img a {
+   color: #ff55ff;
+   font-weight: bold;
+}
+
+#blinker {
+    line-height: .9em;
+}

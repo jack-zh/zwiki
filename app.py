@@ -611,6 +611,12 @@ def user_logout():
     return redirect(url_for('index'))
 
 
+@app.route('/about/')
+@showprotect
+def about():
+    return render_template('about.html')
+
+
 @app.route('/upload/', methods=['GET'])
 @showprotect
 def show_upload():
