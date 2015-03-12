@@ -472,6 +472,18 @@
                }else if(command == "exit();"){
                   COMMANDS.exit(args, function(){});
                   this._prompt();
+               }else if(command == "quit"){
+                  COMMANDS.exit(args, function(){});
+                  this._prompt();
+               }else if(command == "quit()"){
+                  COMMANDS.exit(args, function(){});
+                  this._prompt();
+               }else if(command == "quit;"){
+                  COMMANDS.exit(args, function(){});
+                  this._prompt();
+               }else if(command == "quit();"){
+                  COMMANDS.exit(args, function(){});
+                  this._prompt();
                }else{
                   this.write('NameError: name '+command+' is not defined');
                   this._prompt();
