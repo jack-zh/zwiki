@@ -7,6 +7,10 @@
 + [中文](https://github.com/jack-zh/zwiki/blob/master/README_zh.md)
 + [English](https://github.com/jack-zh/zwiki/blob/master/README.md)
 
+## version
+
+  0.2.2
+
 ## 开始
 
 #### 1. 获取代码
