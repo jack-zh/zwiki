@@ -16,6 +16,8 @@ A simple wiki(blog?) written in Flask.
     pip install -r requirements.txt
     gunicorn app:app
 
+### About config`/static/jsterm/config.js`
+
 ## Next version
   + The attachment list
   + The custom Menu

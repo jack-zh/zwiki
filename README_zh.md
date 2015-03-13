@@ -32,6 +32,8 @@
  + `Tags`是标签列表
  + `Search`是全局搜索入口
  + `New Page` 新添加页面配置
+
+### 6. About的配置页面在`/static/jsterm/config.js`
  
 ## 设置
 
