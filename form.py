@@ -2,7 +2,7 @@ from flask.ext.wtf import Form
 from wtforms import (TextField, TextAreaField, PasswordField)
 from wtforms.validators import (InputRequired, ValidationError)
 
-from handlerAction import Processors
+from model import Processors
 
 class URLForm(Form):
     url = TextField('', [InputRequired()])
