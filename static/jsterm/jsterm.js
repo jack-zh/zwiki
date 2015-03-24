@@ -433,17 +433,18 @@
       _execute: function(fullCommand) {
          var output = document.createElement('div');
          var stdout = document.createElement('span');
-             if (fullCommand.indexOf('.')>=0) {
-               var parts = fullCommand.split('.').filter(function(x) { return x; });
-               var command = parts[0];
-               var args = parts.slice(1, parts.length);
-               var entry = this.getEntry(fullCommand);
-             }else{
-               var parts = fullCommand.split(' ').filter(function(x) { return x; });
-               var command = parts[0];
-               var args = parts.slice(1, parts.length);
-               var entry = this.getEntry(fullCommand);
-             }
+         var 
+         if (fullCommand.indexOf('.')>=0 && CONFIG.ipython) {
+            var parts = fullCommand.split('.').filter(function(x) { return x; });
+            var command = parts[0];
+            var args = parts.slice(1, parts.length);
+            var entry = this.getEntry(fullCommand);
+         }else{
+            var parts = fullCommand.split(' ').filter(function(x) { return x; });
+            var command = parts[0];
+            var args = parts.slice(1, parts.length);
+            var entry = this.getEntry(fullCommand);
+         }
 
          this._resetID('#stdout');
          stdout.id = 'stdout';
