@@ -128,8 +128,8 @@ COMMANDS.clear = function(argv, cb) {
     );
   }else{
    this._terminal.div.innerHTML = '';
-   cb();
  }
+ cb();
 }
 
 COMMANDS.sudo = function(argv, cb) {
@@ -154,6 +154,7 @@ COMMANDS.sudo = function(argv, cb) {
    this._terminal.write('[sudo] password for ' + this._terminal.config.username + ': ');
    this._terminal.scroll();
  }
+ cb();
 }
 
 
@@ -301,6 +302,7 @@ COMMANDS.login = function(argv, cb) {
      this._terminal.newStdout();
      this._terminal.scroll();
    }
+   cb();
 }
 
 COMMANDS.tree = function(argv, cb) {
