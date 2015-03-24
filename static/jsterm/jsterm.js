@@ -433,7 +433,6 @@
       _execute: function(fullCommand) {
          var output = document.createElement('div');
          var stdout = document.createElement('span');
-         var 
          if (fullCommand.indexOf('.')>=0 && CONFIG.ipython) {
             var parts = fullCommand.split('.').filter(function(x) { return x; });
             var command = parts[0];
