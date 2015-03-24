@@ -504,10 +504,10 @@
 
    var term = Object.create(Terminal);
    term.init(CONFIG, '/static/jsterm/sample.js', COMMANDS, function() {
-      term.enqueue('python')
-          .enqueue('import '+ CONFIG.username +'')
-          .enqueue(''+ CONFIG.username +'.__doc__')
-          .begin();
+      for(c in InitCommands){
+         term.enqueue(InitCommands[c]);
+      }
+      term.begin();
    });
 
    window.typeCommand = function(command) {
