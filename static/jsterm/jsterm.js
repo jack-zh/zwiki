@@ -485,7 +485,12 @@
                   COMMANDS.exit(args, function(){});
                   this._prompt();
                }else{
-                  this.write('NameError: name '+command+' is not defined');
+                  if(CONFIG.ipython){
+                     this.write('NameError: name '+command+' is not defined');
+                  }
+                  else{
+                     this.write("zsh: command not found: " + command);
+                  }
                   this._prompt();
                }
             }
