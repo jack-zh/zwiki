@@ -4,6 +4,7 @@ from wtforms.validators import (InputRequired, ValidationError)
 
 from model import Processors
 
+
 class URLForm(Form):
     url = TextField('', [InputRequired()])
 
@@ -31,11 +32,13 @@ class LoginForm(Form):
     password = PasswordField('', [InputRequired()])
 
     def validate_name(form, field):
+        from app import users
         user = users.get_user(field.data)
         if not user:
             raise ValidationError('This username does not exist.')
 
     def validate_password(form, field):
+        from app import users
         user = users.get_user(form.name.data)
         if not user:
             return
