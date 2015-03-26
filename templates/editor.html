@@ -6,28 +6,28 @@ Wiki Editor
 
 {% block content %}
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#editor" data-toggle="tab">Editor</a></li>
-	<li><a href="#preview" data-toggle="tab" id="previewlink">Preview</a></li>
+  <li class="active"><a href="#editor" data-toggle="tab">Editor</a></li>
+  <li><a href="#preview" data-toggle="tab" id="previewlink">Preview</a></li>
 </ul>
 <div class="tab-content">
-	<div class="tab-pane active" id="editor">
-		<form method="post" class="form">
-			{{ form.hidden_tag() }}
-			{{ input(form.title, placeholder="Title", class="span7") }}
-			{{ input(form.body, placeholder="Markdown", class="span7", rows="20") }}
-			{{ input(form.tags, placeholder="Tags (comma separated)", class="span7") }}
-			<div class="form-actions">
+  <div class="tab-pane active" id="editor">
+    <form method="post" class="form">
+      {{ form.hidden_tag() }}
+      {{ input(form.title, placeholder="Title", class="span7") }}
+      {{ input(form.body, placeholder="Markdown", class="span7", rows="20") }}
+      {{ input(form.tags, placeholder="Tags (comma separated)", class="span7") }}
+      <div class="form-actions">
         <div class="pull-left">
           <a class="btn" href="#preview" id="previewbtn">Preview</a>
         </div>
-				<div class="pull-right">
+        <div class="pull-right">
           <a class="btn" href="{{ url_for('display', url=page.url) }}">Cancel</a>
-					<button class="btn btn-success" type="submit">Save</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="tab-pane" id="preview"></div>
+          <button class="btn btn-success" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane" id="preview"></div>
 </div>
 {% endblock content %}
 {% block sidebar %}
@@ -48,7 +48,7 @@ Wiki Editor
 {% block postscripts -%}
 {{ super() }}
 $('#previewlink').on('click', function() {
-	var $form = $('.form');
+  var $form = $('.form');
   var $inputs = $form.find('input, textarea, button');
   var $pre = $('#preview');
   var bodycontent = 'title: preview\n\n' + $form.find('textarea').val();
@@ -63,7 +63,7 @@ $('#previewlink').on('click', function() {
       console.log(msg);
     },
     error: function() {
-	$pre.addClass('alert').addClass('alert-error');
+  $pre.addClass('alert').addClass('alert-error');
       $pre.html('There was a problem with the preview.');
     },
     complete: function() {
@@ -72,8 +72,8 @@ $('#previewlink').on('click', function() {
   });
 });
 $('#previewbtn').on('click', function(event) {
-	event.preventDefault();
-	$('#previewlink').click();
+  event.preventDefault();
+  $('#previewlink').click();
 });
 
 function ajaxFileUpload(){

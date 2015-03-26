@@ -27,6 +27,18 @@ class EditorForm(Form):
     tags = TextField('')
 
 
+class AddLnkForm(Form):
+    title = TextField('', [InputRequired()])
+    url = TextField('', [InputRequired()])
+
+    def validate_url(form, field):
+        from app import wiki
+        if wiki.exists(field.data):
+            raise ValidationError('The URL "%s" exists already.' % field.data)
+
+    def clean_url(self, url):
+        return Processors().clean_url(url)
+
 class LoginForm(Form):
     name = TextField('', [InputRequired()])
     password = PasswordField('', [InputRequired()])

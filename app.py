@@ -8,7 +8,7 @@ from flask.ext.login import (LoginManager, login_required, current_user, login_u
 from flask.ext.script import Manager
 
 from model import Wiki, UserManager
-from form import URLForm, SearchForm, EditorForm, LoginForm
+from form import URLForm, SearchForm, EditorForm, LoginForm, AddLnkForm
 from utils import make_salted_hash, check_hashed_password, allowed_file, get_save_name, get_md5, save_uploadfile_to_backup
 
 
@@ -55,6 +55,8 @@ else:
 
 app.config['CONTENT_DIR'] = 'content'
 app.config['TITLE'] = 'wiki'
+
+app.config['TITLELNK'] = []
 
 app.config.from_pyfile(
     os.path.join(app.config.get('CONTENT_DIR'), config_filename)
@@ -256,6 +258,17 @@ def post_upload():
         save_uploadfile_to_backup(filepath)
 
     return json.dumps(bobj)
+
+
+@app.route('/addlnk/', methods=['GET', 'POST'])
+@protect
+def addlnk():
+    form = AddLnkForm()
+    if form.validate_on_submit():
+        url = form.clean_url(form.url.data)
+        app.config['TITLELNK'].append({"title":form.title.data, "url":url})
+        return redirect(url_for('edit', url=url))
+    return render_template('addLnk.html', form=form)
 
 
 @app.route('/user/')
