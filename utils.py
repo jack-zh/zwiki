@@ -7,6 +7,8 @@ import re
 from hashlib import md5
 import uuid
 
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar', 'tar', 'gz', 'xz', '7z', 'md'])
+
 
 def make_salted_hash(password, salt=None):
     if not salt:

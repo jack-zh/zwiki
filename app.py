@@ -12,9 +12,6 @@ from form import URLForm, SearchForm, EditorForm, LoginForm, AddLnkForm
 from utils import make_salted_hash, check_hashed_password, allowed_file, get_save_name, get_md5, save_uploadfile_to_backup
 
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'zip', 'rar', 'tar', 'gz', 'xz', '7z', 'md'])
-
-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
