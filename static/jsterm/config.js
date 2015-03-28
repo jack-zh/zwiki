@@ -46,7 +46,7 @@ var AboutMeStr = '**************************************************************
           '从此喜欢上了python的简捷,快速和<span class="prettytext">There is only one way to do it</span> 的编程思想。<br>'+
           '目前的技术栈是 python, C, tornado， flask, mongodb， redis， nodejs， golang, mysql, git, linux。网站部署常用的是supervisord+nginx+git<br>'+
           '这个是我的个人网站。当然你可以从<a href="http://github.com/jack-zh" target="_blank">GitHub</a>上面看到我之前写的一些乱七八糟的项目。<br>'+
-          '你可以通过邮件联系我 <a href="mailto:zzh.coder@qq.com">zzh.coder#qq.com</a> 或者QQ: 715443050 或者<a target="_blank" href="'+ CONFIG.weibo +'">微博</a><br>'+
+          '你可以通过邮件联系我 <a href="mailto:zzh.coder@qq.com">zzh.coder#qq.com</a> 或者QQ: 715443050 或者<a target="_blank" href="'+ 'http://github.com/jack-zh' +'">微博</a><br>'+
           '最后你可以试着输入 <span class="prettytext">jack.__doc__</span> 看看这个module有哪些属性和方法以便您更好的了解和使用它<br>'+
           '你可以点击命令输出结果中的任何绿色文字连接。在输入命令的时候如果你想中途退出，请输入Ctrl+D或者Ctrl+C。<br>'+
           '你可以输入&uarr;或者&darr;查看之前输入的命令<br>'+
