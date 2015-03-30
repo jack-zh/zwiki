@@ -22,6 +22,10 @@ A simple wiki(blog?) written in Flask.
   + The attachment list
   + The custom Menu
 
+## Note
+
+You can edit `static/jsterm/config.js`, set yourself message for geek menu 
+
 ## LICENSE
 
     MIT
