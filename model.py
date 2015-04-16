@@ -60,7 +60,7 @@ class Page(object):
 
     def save(self, update=True):
         folder = os.path.dirname(self.path)
-        if not os.path.exists(folder):
+        if folder != "" and not os.path.exists(folder):
             os.makedirs(folder)
         with open(self.path, 'w') as f:
             for key, value in self._meta.items():
@@ -139,6 +139,9 @@ class Wiki(object):
         return Page(path, url, new=True)
 
     def move(self, url, newurl):
+        folder = os.path.dirname(newurl)
+        if folder != "" and not os.path.exists(folder):
+            os.makedirs(os.path.join(self.root, folder))
         os.rename(
             os.path.join(self.root, url) + '.md',
             os.path.join(self.root, newurl) + '.md'
