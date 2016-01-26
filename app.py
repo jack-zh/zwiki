@@ -3,7 +3,7 @@ import os
 import json
 from functools import wraps
 from flask import (Flask, render_template, flash, redirect, url_for, request)
-
+from werkzeug.utils import secure_filename
 from flask.ext.login import (LoginManager, login_required, current_user, login_user, logout_user)
 from flask.ext.script import Manager
 
@@ -253,7 +253,6 @@ def post_upload():
 
     if not bobj['error']:
         save_uploadfile_to_backup(filepath)
-
     return json.dumps(bobj)
 
 

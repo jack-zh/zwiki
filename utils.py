@@ -51,8 +51,11 @@ def get_md5(name):
 
 
 def save_uploadfile_to_backup(filename):
-    backupfilepath = os.path.join(app.config.get('CONTENT_DIR'), "upload")
-    if not os.path.isdir(backupfilepath):
-        os.makedirs(backupfilepath)
-    shutil.copy(filename,  backupfilepath)
+    try:
+        backupfilepath = os.path.join(app.config.get('CONTENT_DIR'), "upload")
+        if not os.path.isdir(backupfilepath):
+            os.makedirs(backupfilepath)
+        shutil.copy(filename,  backupfilepath)
+    except Exception, e:
+        print e
 
