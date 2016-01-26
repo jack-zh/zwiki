@@ -27,7 +27,7 @@
 							</ul>
 
 							<ul class="nav pull-right">
-								{% if current_user.is_anonymous() %}
+								{% if not current_user.name %}
 									<li><a href="{{ url_for('user_login') }}">Login</a></li>
 								{% else %}
 									<li><a href="#">Welcome {{ current_user.name }}!</a></li>
