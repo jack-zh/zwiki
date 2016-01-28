@@ -8,7 +8,7 @@ from flask.ext.login import (LoginManager, login_required, current_user, login_u
 from flask.ext.script import Manager
 
 from model import Wiki, UserManager
-from form import URLForm, SearchForm, EditorForm, LoginForm, AddLnkForm
+from form import URLForm, SearchForm, EditorForm, LoginForm, AddLnkForm, Processors
 from utils import make_salted_hash, check_hashed_password, allowed_file, get_save_name, get_md5, save_uploadfile_to_backup
 
 
