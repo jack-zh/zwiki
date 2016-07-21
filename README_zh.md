@@ -219,4 +219,4 @@
 
 ## Example online
 
-[http://zwiki.link-pub.cn](http://zwiki.link-pub.cn)
+[http://demo.zwiki.link-pub.cn](http://demo.zwiki.link-pub.cn)

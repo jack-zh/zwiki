@@ -32,4 +32,4 @@ You can edit `static/jsterm/config.js`, set yourself message for geek menu
 
 ## Example online
 
-[http://zwiki.link-pub.cn](http://zwiki.link-pub.cn)
+[http://demo.zwiki.link-pub.cn](http://demo.zwiki.link-pub.cn)
