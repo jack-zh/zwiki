@@ -24,7 +24,7 @@ def get_default_authentication_method():
 def protect(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
-        if app.config.get('PRIVATE') and not current_user.is_authenticated():
+        if app.config.get('PRIVATE') and not current_user.is_authenticated:
             return loginmanager.unauthorized()
         return f(*args, **kwargs)
     return wrapper
