@@ -33,7 +33,7 @@ def protect(f):
 def showprotect(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
-        if app.config.get('SHOWPRIVATE') and not current_user.is_authenticated():
+        if app.config.get('SHOWPRIVATE') and not current_user.is_authenticated:
             return loginmanager.unauthorized()
         return f(*args, **kwargs)
     return wrapper
